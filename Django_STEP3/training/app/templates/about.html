@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block main %}
+{% load humanize %}
+
+<h1>自己紹介</h1>
+<p>名前は{{ my_name }}です</p>
+<p>{{ birth_day|date:"Y年n月j日" }}生まれです</p>
+<p>戦闘力は{{ commbat_power|intcomma }}です</p>
+<p>スキル</p>
+<ul>
+    {% for skill in skills %}
+        <li>{{ skill }}</li>
+    {% empty %}
+        <li>スキルはありません</li>
+    {% endfor %}
+</ul>
+
+<p>倒した敵</p>
+<ul>
+    {% for enemy in defeat_enemy %}
+        <li>{{ enemy }}</li>
+    {% empty %}
+        <li>まだ敵は倒してません</li>
+    {% endfor %}
+</ul>
+
+{% if rondomint == 0 %}
+<p>{{ my_name }}は{{ visitor }}さんより強いです</p>
+{% elif rondomint == 1 %}
+<p>{{ my_name }}は{{ visitor }}さんより弱いです</p>
+{% else %}
+<p>{{ my_name }}と{{ visitor }}さんは同じ強さです</p>
+{% endif %}
+
+
+
+{% endblock %}
